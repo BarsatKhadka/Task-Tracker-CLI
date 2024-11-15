@@ -3,15 +3,22 @@ package org.TaskTracker;
 import java.time.LocalDateTime;
 
 public class TaskClass {
+    public static int idCounter = 1;
     private int id;
     private String description;
-    private boolean status;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String status;
 
-    public TaskClass(int id, String description, boolean status, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    public TaskClass(String description) {
+        this.id = idCounter++;
         this.description = description;
+        this.status = "todo";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setStatus(String status) {
         this.status = status;
     }
 }
