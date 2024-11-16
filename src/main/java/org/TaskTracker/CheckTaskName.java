@@ -31,8 +31,16 @@ public class CheckTaskName {
                 if (matcher.matches()) {
                     return true;
                 }
-
-            } else {
+            }
+            else if(command.equals("delete")) {
+                String regex = "^" + "delete" + " " + "(\\d+)" + "\\s*$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(user_command);
+                if (matcher.matches()) {
+                    return true;
+                }
+            }
+            else {
                 String regex = "^" + command + " .+";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);
