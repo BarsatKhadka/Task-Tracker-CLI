@@ -11,10 +11,18 @@ public class TaskStore {
         allTasks.add(task);
     }
 
+    public void updateTask(){
+        for(TaskClass task : allTasks){
+            System.out.println(task.toString());
+        }
 
-    public List<TaskClass> getAllTasks() {
-        return allTasks;
     }
+
+
+
+
+
+
 
 
 

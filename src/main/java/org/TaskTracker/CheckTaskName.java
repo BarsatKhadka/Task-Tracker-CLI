@@ -27,7 +27,9 @@ public class CheckTaskName {
             String regex = "^" + command + " .+";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(user_command);
-            return matcher.matches();
+            if (matcher.matches() == true){
+                return true;
+            }
         }
         return false;
     }

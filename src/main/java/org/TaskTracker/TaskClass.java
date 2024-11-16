@@ -18,7 +18,13 @@ public class TaskClass {
         return id;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int id, String status) {
         this.status = status;
     }
+
+    public String toString(){
+        String toString = "{ id:" + id + ", description:" + description + ", status:" + status + " }";
+        return toString;
+    }
+
 }

@@ -32,31 +32,33 @@ public class TaskMain {
            if(isCommand) {
                if(input.contains("add")) {
                    String taskToAdd = (input.substring(4, input.length()));
-                   TaskClass taskClass = new TaskClass(taskToAdd);
-                   taskStore.addTask(taskClass);
+                   addTask(taskStore , taskToAdd);
+               }
+               else if(input.contains("update")){
+                   String taskToUpdate = (input.substring(7, input.length()));
+                   taskStore.updateTask();
                }
 
            }
            else {
                System.out.println("the format is as below: \n task-cli 'command' 'action' \n For more help type '--h'");
            }
-
-
-           
-
-
-
-
-
-
-
-
-
-
-
         }
 
-        }
+    }
+
+    private static void addTask(TaskStore taskStore , String taskToadd) {
+        TaskClass taskClass = new TaskClass(taskToadd);
+        taskStore.addTask(taskClass);
+        System.out.println("Task added successfully ID(" + taskClass.getId() + ")");
+    }
+
+
+
+
+
+
+
 
     }
 
