@@ -24,12 +24,23 @@ public class CheckTaskName {
 
     public boolean verifyValid() {
         for (String command : allCommands) {
-            String regex = "^" + command + " .+";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(user_command);
-            if (matcher.matches() == true){
-                return true;
+            if (command.equals("update")) {
+                String regex = "^" + "update" + " " + "(\\d+)" + " .+";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(user_command);
+                if (matcher.matches()) {
+                    return true;
+                }
+
+            } else {
+                String regex = "^" + command + " .+";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(user_command);
+                if (matcher.matches()) {
+                    return true;
+                }
             }
+
         }
         return false;
     }

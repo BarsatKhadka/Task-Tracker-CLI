@@ -22,6 +22,10 @@ public class TaskClass {
         this.status = status;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String toString(){
         String toString = "{ id:" + id + ", description:" + description + ", status:" + status + " }";
         return toString;

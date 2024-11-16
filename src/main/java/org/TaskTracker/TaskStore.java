@@ -11,10 +11,13 @@ public class TaskStore {
         allTasks.add(task);
     }
 
-    public void updateTask(){
-        for(TaskClass task : allTasks){
-            System.out.println(task.toString());
+    public void updateTask(int id , String description){
+        for(TaskClass taskClass : allTasks){
+            if(taskClass.getId() == id){
+                taskClass.setDescription(description);
+            }
         }
+
 
     }
 
