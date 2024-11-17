@@ -2,13 +2,17 @@ package org.TaskTracker;
 
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class TaskMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         Gson gson = GsonProvider.getGson();
         TaskStore taskStore = new TaskStore();
@@ -25,7 +29,7 @@ public class TaskMain {
             CheckTaskName checkTaskName = new CheckTaskName(input);
             boolean isCommand = checkTaskName.verifyValid();
 
-           if (input.equals("--h")) {  System.out.println("This is the help page");  }
+           if (input.equals("--h")) {  helpPage();  }
 
            if(isCommand) {
                if(input.contains("add")) {
@@ -74,6 +78,7 @@ public class TaskMain {
                else if(input.contains("list")){
                    System.out.println("To display all contents of list.Type only 'list'.\n To look into tasks that are done 'Type list done'. \n To look into tasks that are in-progress 'Type list in-progress'");
                }
+               else if(input.contains("--h")){}
                else {
                    System.out.println("the format is as below: \n task-cli 'command' 'action' \n For more help type '--h'");
                }
@@ -115,6 +120,25 @@ public class TaskMain {
     private static void ListStatus(TaskStore taskStore , String listType) {
         String type = listType.substring(5);
         taskStore.listStatus(type);
+    }
+
+    private static void helpPage() throws FileNotFoundException {
+        File file = new File("/home/rain_linux/Project/TaskTracker/src/main/java/org/TaskTracker/help.txt");
+        if(!file.exists()) {
+            System.out.println("File Does not exist");
+            return;
+        }
+        try(FileInputStream fileInputStream = new FileInputStream(file)){
+            int content = fileInputStream.read();
+            while(content != -1) {
+                System.out.print((char) content);
+                content = fileInputStream.read();
+            }
+
+        } catch (IOException e) {
+            System.out.println("The error is " + e.getMessage());
+        }
+
 
     }
 

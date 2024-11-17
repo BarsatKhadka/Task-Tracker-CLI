@@ -1,0 +1,57 @@
+Task Tracker - Help Documentation
+----------------------------------
+
+Welcome to Task Tracker! Use the commands below to manage your tasks efficiently.
+
+1. --h
+   Description: Displays the help page.
+   Format:
+       task-cli --h
+
+2. add
+   Description: Adds a new task with the specified description.
+   Format:
+       task-cli add <task description>
+   Example:
+       task-cli add Finish the report
+
+3. update
+   Description: Updates the description of the task with the specified ID.
+   Format:
+       task-cli update <task ID> <new description>
+   Example:
+       task-cli update 1 Update the meeting agenda
+
+4. delete
+   Description: Deletes the task with the specified ID.
+   Format:
+       task-cli delete <task ID>
+   Example:
+       task-cli delete 1
+
+5. mark-in-progress
+   Description: Marks the task with the specified ID as "in-progress."
+   Format:
+       task-cli mark-in-progress <task ID>
+   Example:
+       task-cli mark-in-progress 2
+
+6. mark-done
+   Description: Marks the task with the specified ID as "done."
+   Format:
+       task-cli mark-done <task ID>
+   Example:
+       task-cli mark-done 2
+
+7. list
+   Description: Displays tasks based on their status or lists all tasks.
+   Formats:
+       task-cli list                 - Displays all tasks in JSON format.
+       task-cli list done            - Displays all tasks marked as "done."
+       task-cli list in-progress     - Displays all tasks marked as "in-progress."
+       task-cli list todo            - Displays all tasks marked as "todo."
+   Examples:
+       task-cli list
+       task-cli list done
+       task-cli list in-progress
+       task-cli list todo
