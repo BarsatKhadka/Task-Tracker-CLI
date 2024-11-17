@@ -54,7 +54,7 @@ public class TaskStore {
         }
         for(TaskClass taskClass : allTasks){
             if(taskClass.getId() == id){
-                taskClass.setStatus(markType);
+                taskClass.setStatus(markType.substring(5));
                 markedTask = true;
                 break;
             }

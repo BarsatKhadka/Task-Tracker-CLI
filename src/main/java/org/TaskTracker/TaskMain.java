@@ -51,6 +51,11 @@ public class TaskMain {
                    System.out.println(gson.toJson(taskStore));
 
                }
+               else if(input.contains("mark-done")){
+                   String tasktoMark = input;
+                   markTask(taskStore , tasktoMark);
+                   System.out.println(gson.toJson(taskStore));
+               }
 
            }
            else {
