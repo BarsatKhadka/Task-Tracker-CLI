@@ -1,4 +1,4 @@
-# Task Tracker
+# Task Tracker (https://roadmap.sh/projects/task-tracker - Roadmap Project)
 
 Welcome to **Task Tracker**! This application helps you track, update, delete, and manage tasks easily. Whether you're handling personal to-do lists or managing work tasks, Task Tracker will keep you organized and on track.
 
@@ -142,7 +142,6 @@ Once the application is running, you can use the following commands to manage yo
 
 ### Happy Task Tracking!
 
-Project URL : https://roadmap.sh/projects/task-tracker
 Thank you for using Task Tracker! I hope this application helps you stay on top of your tasks.
 
 
