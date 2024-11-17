@@ -3,6 +3,8 @@ package org.TaskTracker;
 import com.google.gson.Gson;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,8 +13,11 @@ public class TaskStore {
 
     public List<TaskClass> allTasks = new ArrayList<TaskClass>();
 
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public void addTask(TaskClass task){
         allTasks.add(task);
+        task.setUpdatedAt(LocalDateTime.now().format(formatter));
         System.out.println("Task added successfully ID(" + task.getId() + ")");
     }
 
@@ -24,6 +29,7 @@ public class TaskStore {
         for(TaskClass taskClass : allTasks){
             if(taskClass.getId() == id){
                 taskClass.setDescription(description);
+                taskClass.setUpdatedAt(LocalDateTime.now().format(formatter));
                 System.out.println("Task updated successfully ID(" + id + ")");
                 updatedTask = true;
                 break;
@@ -43,6 +49,7 @@ public class TaskStore {
             return;
         }
         boolean deletedTask = allTasks.removeIf(taskClass -> taskClass.getId() == id);
+
         if(!deletedTask){
             System.out.println("Task with ID( " + id + ") not found.");
         }
@@ -57,6 +64,7 @@ public class TaskStore {
         for(TaskClass taskClass : allTasks){
             if(taskClass.getId() == id){
                 taskClass.setStatus(markType.substring(5));
+                taskClass.setUpdatedAt(LocalDateTime.now().format(formatter));
                 markedTask = true;
                 break;
             }
