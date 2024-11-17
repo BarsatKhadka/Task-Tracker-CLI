@@ -56,9 +56,16 @@ public class TaskMain {
                    markTask(taskStore , tasktoMark);
                    System.out.println(gson.toJson(taskStore));
                }
+               else if(input.contains("list done")){
+                   System.out.println("DONE LIST");
+               }
+               else if(input.contains("list in-progress")){
+                   System.out.println("DONE LIST");
+               }
                else if(input.contains("list")){
                    displayList(taskStore);
                }
+
 
 
            }

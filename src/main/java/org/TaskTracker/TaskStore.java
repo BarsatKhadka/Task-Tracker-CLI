@@ -9,6 +9,8 @@ public class TaskStore {
 
     public List<TaskClass> allTasks = new ArrayList<TaskClass>();
 
+    ;
+
 
 
     public void addTask(TaskClass task){
@@ -67,7 +69,10 @@ public class TaskStore {
     }
 
     public void showListJson(){
-        System.out.println("all tasks");
+        Gson gson = GsonProvider.getGson();
+        String allTasksJson = gson.toJson(allTasks);
+        System.out.println(allTasksJson);
+
     }
 
 

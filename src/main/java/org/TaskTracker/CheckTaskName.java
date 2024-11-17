@@ -8,7 +8,10 @@ import java.util.regex.Pattern;
 
 public class CheckTaskName {
     ArrayList<String> allCommands = new ArrayList<>(Arrays.asList("add", "update" , "delete",
-            "list", "mark-in-progress", "mark-done"));
+            "list", "mark-in-progress", "mark-done" , "list done" , "list in-progress"));
+
+
+
 
     String user_command = "";
 
@@ -32,7 +35,7 @@ public class CheckTaskName {
                     return true;
                 }
             }
-            else if(command.equals("delete")) {
+            else if(command.equals("delete") || command.equals("mark-in-progress") || command.equals("mark-done")) {
                 String regex = "^" + "delete" + " " + "(\\d+)" + "\\s*$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);
@@ -40,32 +43,15 @@ public class CheckTaskName {
                     return true;
                 }
             }
-            else if(command.equals("mark-in-progress")) {
-                String regex = "^" + "mark-in-progress" + " " + "(\\d+)" +"\\s*$";
+            else if(command.equals("list") || command.equals("list done") || command.equals("list in-progress")) {
+                String regex = "^" + command + "\\s*$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);
                 if (matcher.matches()) {
                     return true;
                 }
             }
-            else if(command.equals("mark-done")) {
-                String regex = "^" + "mark-done" + " " + "(\\d+)" +"\\s*$";
-                Pattern pattern = Pattern.compile(regex);
-                Matcher matcher = pattern.matcher(user_command);
-                if (matcher.matches()) {
-                    return true;
-                }
-
-            }
-            else if(command.equals("list")) {
-                String regex = "^" + "list" + "\\s*$";
-                Pattern pattern = Pattern.compile(regex);
-                Matcher matcher = pattern.matcher(user_command);
-                if (matcher.matches()) {
-                    return true;
-                }
-            }
-            else if (command.equals("add")) {
+            else if(command.equals("add")) {
                 String regex = "^" + command + " .+";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);
@@ -73,6 +59,7 @@ public class CheckTaskName {
                     return true;
                 }
             }
+
 
         }
         return false;
