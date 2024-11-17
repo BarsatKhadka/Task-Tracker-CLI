@@ -1,7 +1,11 @@
 package org.TaskTracker;
 
 import com.google.gson.Gson;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class TaskMain {
     public static void main(String[] args) {
@@ -40,6 +44,11 @@ public class TaskMain {
                    String taskToDelete = (input.substring(7));
                    deleteTask(taskStore , taskToDelete);
                    System.out.println(gson.toJson(taskStore));
+               }
+               else if(input.contains("mark-in-progress")){
+                   String tasktoMark = input;
+                   markTask(taskStore , tasktoMark);
+                   System.out.println(gson.toJson(taskStore));
 
                }
 
@@ -51,6 +60,9 @@ public class TaskMain {
                }
                else if(input.contains("delete")){
                    System.out.println("the format for delete is as below: \n task-cli 'delete' 'ID you want to delete' \n For"+ " more help type --h");
+               }
+               else if(input.contains("mark-in-progress")){
+                   System.out.println("the format to mark-in-progress is as below: \n task-cli 'mark-in-progress' 'ID you want to mark as progress' \n For more help type --h");
                }
                else {
                    System.out.println("the format is as below: \n task-cli 'command' 'action' \n For more help type '--h'");
@@ -67,14 +79,22 @@ public class TaskMain {
     }
 
     private static void updateTask(TaskStore taskStore , String taskToupdate) {
-        int idToUpdate = Integer.parseInt(taskToupdate.split(" ")[0]);
-        String descriptionToUpdate = taskToupdate.split(" ")[1];
+        List<String> taskToupdateArray = Arrays.asList(taskToupdate.split(" "));
+        int idToUpdate = Integer.parseInt(taskToupdateArray.get(0));
+        String descriptionToUpdate = taskToupdateArray.stream().skip(1).collect(Collectors.joining(" "));
         taskStore.updateTask(idToUpdate, descriptionToUpdate);
+
     }
 
     private static void deleteTask(TaskStore taskStore , String taskTodelete) {
         int idToDelete = Integer.parseInt(taskTodelete.split(" ")[0]);
         taskStore.deleteTask(idToDelete);
+    }
+
+    private static void markTask(TaskStore taskStore , String taskToMark) {
+        String[] markTypeAndDigit = (taskToMark.split(" "));
+        taskStore.markTask(Integer.parseInt(markTypeAndDigit[1]), markTypeAndDigit[0]);
+
     }
 
     }

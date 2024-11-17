@@ -26,9 +26,10 @@ public class TaskStore {
                 updatedTask = true;
                 break;
             }
-            if(!updatedTask ){
-                System.out.println("Task with ID( " + id + ") not found." + " If you want too look up your tasks use 'list' command");
-            }
+
+        }
+        if(!updatedTask ){
+            System.out.println("Task with ID( " + id + ") not found." + " If you want too look up your tasks use 'list' command");
         }
 
 
@@ -44,6 +45,23 @@ public class TaskStore {
             System.out.println("Task with ID( " + id + ") not found.");
         }
 
+    }
+
+    public void markTask(int id , String markType){
+        boolean markedTask = false;
+        if(allTasks.isEmpty()){
+            System.out.println("No tasks to "+ markType);
+        }
+        for(TaskClass taskClass : allTasks){
+            if(taskClass.getId() == id){
+                taskClass.setStatus(markType);
+                markedTask = true;
+                break;
+            }
+        }
+        if(!markedTask){
+            System.out.println("Task with ID( " + id + ") not found.");
+        }
     }
 
 

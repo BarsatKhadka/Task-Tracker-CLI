@@ -40,6 +40,23 @@ public class CheckTaskName {
                     return true;
                 }
             }
+            else if(command.equals("mark-in-progress")) {
+                String regex = "^" + "mark-in-progress" + " " + "(\\d+)" +"\\s*$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(user_command);
+                if (matcher.matches()) {
+                    return true;
+                }
+            }
+            else if(command.equals("mark-done")) {
+                String regex = "^" + "mark-done" + " " + "(\\d+)" +"\\s*$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(user_command);
+                if (matcher.matches()) {
+                    return true;
+                }
+
+            }
             else {
                 String regex = "^" + command + " .+";
                 Pattern pattern = Pattern.compile(regex);

@@ -18,7 +18,7 @@ public class TaskClass {
         return id;
     }
 
-    public void setStatus(int id, String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
