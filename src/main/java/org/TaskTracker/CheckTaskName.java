@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class CheckTaskName {
     ArrayList<String> allCommands = new ArrayList<>(Arrays.asList("add", "update" , "delete",
-            "list", "mark-in-progress", "mark-done" , "list done" , "list in-progress"));
+            "list", "mark-in-progress", "mark-done" , "list done" , "list in-progress", "list todo"));
 
 
 
@@ -36,14 +36,14 @@ public class CheckTaskName {
                 }
             }
             else if(command.equals("delete") || command.equals("mark-in-progress") || command.equals("mark-done")) {
-                String regex = "^" + "delete" + " " + "(\\d+)" + "\\s*$";
+                String regex = "^" + command + " " + "(\\d+)" + "\\s*$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);
                 if (matcher.matches()) {
                     return true;
                 }
             }
-            else if(command.equals("list") || command.equals("list done") || command.equals("list in-progress")) {
+            else if(command.equals("list") || command.equals("list done") || command.equals("list in-progress") || command.equals("list todo")) {
                 String regex = "^" + command + "\\s*$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);

@@ -2,16 +2,14 @@ package org.TaskTracker;
 
 import com.google.gson.Gson;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskStore {
 
     public List<TaskClass> allTasks = new ArrayList<TaskClass>();
-
-    ;
-
-
 
     public void addTask(TaskClass task){
         allTasks.add(task);
@@ -75,15 +73,36 @@ public class TaskStore {
 
     }
 
+    public void listStatus(String listType){
+        if (allTasks.isEmpty()){
+            System.out.println("No tasks to list");
+        }
+            for(TaskClass taskClass : allTasks) {
+                if (taskClass.getStatus().equals("done") & listType.contains("done")) {
+                    List<TaskClass> doneTasks = allTasks.stream().filter(taskClass1 -> taskClass.getStatus().equals("done")).collect(Collectors.toList());
+                    Gson gson = GsonProvider.getGson();
+                    String doneTasksJson = gson.toJson(doneTasks);
+                    System.out.println(doneTasksJson);
 
+                } else if (taskClass.getStatus().equals("in-progress") & listType.contains("in-progress")) {
+                    if (taskClass.getStatus().equals("in-progress")) {
+                        List<TaskClass> inProgressTasks = allTasks.stream().filter(taskClass1 -> taskClass.getStatus().equals("in-progress")).collect(Collectors.toList());
+                        Gson gson = GsonProvider.getGson();
+                        String inProgressTasksJson = gson.toJson(inProgressTasks);
+                        System.out.println(inProgressTasksJson);
 
+                    }
+                }
+                else if (taskClass.getStatus().equals("todo") & listType.contains("todo")) {
+                    if (taskClass.getStatus().equals("todo")) {
+                        List<TaskClass> inProgressTasks = allTasks.stream().filter(taskClass1 -> taskClass.getStatus().equals("in-progress")).collect(Collectors.toList());
+                        Gson gson = GsonProvider.getGson();
+                        String inProgressTasksJson = gson.toJson(inProgressTasks);
+                        System.out.println(inProgressTasksJson);
 
-
-
-
-
-
-
-
+                    }
+                }
+            }
+    }
 
 }

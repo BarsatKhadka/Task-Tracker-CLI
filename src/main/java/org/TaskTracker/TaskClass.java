@@ -22,6 +22,8 @@ public class TaskClass {
         this.status = status;
     }
 
+    public String getStatus(){ return status; }
+
     public void setDescription(String description) {
         this.description = description;
     }

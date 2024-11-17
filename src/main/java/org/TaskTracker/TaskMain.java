@@ -17,8 +17,6 @@ public class TaskMain {
         Scanner scanner = new Scanner(System.in);
         String input;
 
-
-
         while (true) {
 
             System.out.print("task-cli ");
@@ -33,41 +31,34 @@ public class TaskMain {
                if(input.contains("add")) {
                    String taskToAdd = (input.substring(4));
                    addTask(taskStore , taskToAdd);
-                   System.out.println(gson.toJson(taskStore));
                }
                else if(input.contains("update")){
                    String taskToUpdate = (input.substring(7));
                    updateTask(taskStore , taskToUpdate);
-                   System.out.println(gson.toJson(taskStore));
                }
                else if (input.contains("delete")){
-                   String taskToDelete = (input.substring(7));
-                   deleteTask(taskStore , taskToDelete);
-                   System.out.println(gson.toJson(taskStore));
+                   deleteTask(taskStore , input);
                }
                else if(input.contains("mark-in-progress")){
-                   String tasktoMark = input;
-                   markTask(taskStore , tasktoMark);
-                   System.out.println(gson.toJson(taskStore));
+                   markTask(taskStore , input);
 
                }
                else if(input.contains("mark-done")){
-                   String tasktoMark = input;
-                   markTask(taskStore , tasktoMark);
-                   System.out.println(gson.toJson(taskStore));
+                   markTask(taskStore , input);
+               }
+               else if(input.contains("list todo")){
+                   ListStatus(taskStore, input);
                }
                else if(input.contains("list done")){
-                   System.out.println("DONE LIST");
+                   ListStatus(taskStore, input);
+
                }
                else if(input.contains("list in-progress")){
-                   System.out.println("DONE LIST");
+                   ListStatus(taskStore, input);
                }
                else if(input.contains("list")){
                    displayList(taskStore);
                }
-
-
-
            }
            else {
                if(input.contains("update")){
@@ -77,11 +68,11 @@ public class TaskMain {
                else if(input.contains("delete")){
                    System.out.println("the format for delete is as below: \n task-cli 'delete' 'ID you want to delete' \n For"+ " more help type --h");
                }
-               else if(input.contains("mark-in-progress")){
-                   System.out.println("the format to mark-in-progress is as below: \n task-cli 'mark-in-progress' 'ID you want to mark as progress' \n For more help type --h");
+               else if(input.contains("mark-")){
+                   System.out.println("the format to "+ input.split(" ")[0]+ " is as below: \n task-cli " + input.split(" ")[0] + " 'ID you want to mark as progress' \n For more help type --h");
                }
                else if(input.contains("list")){
-                   System.out.println("No other arguments with list. Only 'list'.");
+                   System.out.println("To display all contents of list.Type only 'list'.\n To look into tasks that are done 'Type list done'. \n To look into tasks that are in-progress 'Type list in-progress'");
                }
                else {
                    System.out.println("the format is as below: \n task-cli 'command' 'action' \n For more help type '--h'");
@@ -105,8 +96,9 @@ public class TaskMain {
 
     }
 
-    private static void deleteTask(TaskStore taskStore , String taskTodelete) {
-        int idToDelete = Integer.parseInt(taskTodelete.split(" ")[0]);
+    private static void deleteTask(TaskStore taskStore , String input) {
+        String taskToDelete = (input.substring(7));
+        int idToDelete = Integer.parseInt(taskToDelete.split(" ")[0]);
         taskStore.deleteTask(idToDelete);
     }
 
@@ -118,6 +110,12 @@ public class TaskMain {
 
     private static void displayList(TaskStore taskStore) {
         taskStore.showListJson();
+    }
+
+    private static void ListStatus(TaskStore taskStore , String listType) {
+        String type = listType.substring(5);
+        taskStore.listStatus(type);
+
     }
 
     }
