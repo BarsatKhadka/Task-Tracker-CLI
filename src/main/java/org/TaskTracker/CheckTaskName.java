@@ -57,7 +57,15 @@ public class CheckTaskName {
                 }
 
             }
-            else {
+            else if(command.equals("list")) {
+                String regex = "^" + "list" + "\\s*$";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(user_command);
+                if (matcher.matches()) {
+                    return true;
+                }
+            }
+            else if (command.equals("add")) {
                 String regex = "^" + command + " .+";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(user_command);

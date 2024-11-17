@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class TaskMain {
     public static void main(String[] args) {
 
-        Gson gson = new Gson();
+        Gson gson = GsonProvider.getGson();
         TaskStore taskStore = new TaskStore();
 
         System.out.println("Welcome to task tracker. For help type '--h'");
@@ -56,6 +56,10 @@ public class TaskMain {
                    markTask(taskStore , tasktoMark);
                    System.out.println(gson.toJson(taskStore));
                }
+               else if(input.contains("list")){
+                   displayList(taskStore);
+               }
+
 
            }
            else {
@@ -68,6 +72,9 @@ public class TaskMain {
                }
                else if(input.contains("mark-in-progress")){
                    System.out.println("the format to mark-in-progress is as below: \n task-cli 'mark-in-progress' 'ID you want to mark as progress' \n For more help type --h");
+               }
+               else if(input.contains("list")){
+                   System.out.println("No other arguments with list. Only 'list'.");
                }
                else {
                    System.out.println("the format is as below: \n task-cli 'command' 'action' \n For more help type '--h'");
@@ -100,6 +107,10 @@ public class TaskMain {
         String[] markTypeAndDigit = (taskToMark.split(" "));
         taskStore.markTask(Integer.parseInt(markTypeAndDigit[1]), markTypeAndDigit[0]);
 
+    }
+
+    private static void displayList(TaskStore taskStore) {
+        taskStore.showListJson();
     }
 
     }

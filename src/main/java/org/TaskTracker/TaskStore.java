@@ -1,11 +1,13 @@
 package org.TaskTracker;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskStore {
 
-    List<TaskClass> allTasks = new ArrayList<TaskClass>();
+    public List<TaskClass> allTasks = new ArrayList<TaskClass>();
 
 
 
@@ -62,6 +64,10 @@ public class TaskStore {
         if(!markedTask){
             System.out.println("Task with ID( " + id + ") not found.");
         }
+    }
+
+    public void showListJson(){
+        System.out.println("all tasks");
     }
 
 
